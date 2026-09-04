@@ -20,5 +20,11 @@
   "homepage": "https://github.com/ARYAN0-work/BRL#readme",
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.4.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
   }
 }
