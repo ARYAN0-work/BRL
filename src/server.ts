@@ -4,6 +4,8 @@ const app= express();
 
 const PORT = 3000;
 
+app.use(express.json());
+
 app.get("/api/hello",(req:Request,res:Response)=>{
    res.status(200).json({
     "message":"Hello from luffy",
