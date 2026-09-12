@@ -7,6 +7,16 @@ export enum EventStatus {
     CANCELLED = "CANCELLED",
 }
 
+export interface IEvent {
+    name: string;
+    decription: string;
+    startTime: Date;
+    endTime: Date;
+    venue: string;
+    capacity: number;
+    status: EventStatus;
+}
+
 const eventSchema = new Schema(
     {
         name:{
@@ -53,4 +63,4 @@ const eventSchema = new Schema(
     }
 )
 
-export const Event = model("Event",eventSchema);
+export const Event = model<IEvent>("Event",eventSchema);
