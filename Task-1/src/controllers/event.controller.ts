@@ -26,6 +26,19 @@ export const getAllEventsController = async(
     })
 }
 
+export const getEventByIdController = async (
+  req: Request,
+  res: Response
+) => {
+  const event = await getEventById(req.params.id as string);
+
+  res.status(200).json({
+    success: true,
+    data: event,
+  });
+};
+
+
 export const updateEventController = async(
     req:Request,
     res:Response
