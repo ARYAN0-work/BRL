@@ -38,10 +38,52 @@ export const createEvent = async (eventData: IEvent) => {
     return event;
 };
 
-export const getAllEvents = async ()=>{
-    const events = await Event.find();
+export const getAllEvents = async (
+    search?: string,
+    venue?: string,
+    status?: EventStatus,
+    page = 1,
+    limit = 10,
+    sortBy = "startTime",
+    order = "asc"
+) => {
+    const filter: any = {};
 
-    return events;
+    if (search) {
+        filter.$or = [
+            { name: { $regex: search, $options: "i" } },
+            { description: { $regex: search, $options: "i" } },
+        ];
+    }
+
+    if (venue) {
+        filter.venue = { $regex: venue, $options: "i" };
+    }
+
+    if (status) {
+        filter.status = status;
+    }
+
+    const skip = (page - 1) * limit;
+
+    const sortOrder = order === "desc" ? -1 : 1;
+
+    const events = await Event.find(filter)
+        .sort({ [sortBy]: sortOrder })
+        .skip(skip)
+        .limit(limit);
+
+    const total = await Event.countDocuments(filter);
+
+    return {
+        events,
+        pagination: {
+            page,
+            limit,
+            total,
+            totalPages: Math.ceil(total / limit),
+        },
+    };
 };
 
 export const getEventById = async(eventId: string)=>{

@@ -1,5 +1,5 @@
 import {Request,Response} from "express";
-
+import { EventStatus } from "../models/event.model.js";
 import { createEvent, getAllEvents, getEventById,updateEvent, deleteEvent } from "../services/event.service.js";
 
 export const createEventController = async(
@@ -14,17 +14,36 @@ export const createEventController = async(
     })
 };
 
-export const getAllEventsController = async(
+export const getAllEventsController = async (
     req: Request,
     res: Response
 ) => {
-    const events = await getAllEvents();
+    const {
+        search,
+        venue,
+        status,
+        page = "1",
+        limit = "10",
+        sortBy = "startTime",
+        order = "asc",
+    } = req.query;
+
+    const result = await getAllEvents(
+        search as string,
+        venue as string,
+        status as EventStatus,
+        Number(page),
+        Number(limit),
+        sortBy as string,
+        order as string
+    );
 
     res.status(200).json({
-        success:true,
-        data: events
-    })
-}
+        success: true,
+        data: result.events,
+        pagination: result.pagination,
+    });
+};
 
 export const getEventByIdController = async (
   req: Request,
