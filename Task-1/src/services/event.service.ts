@@ -79,10 +79,20 @@ export const updateEvent = async (
     return event;
 };
 
-export const deleteEvent = async(eventId: string)=>{
-    const event = await Event.findByIdAndDelete(eventId);
+export const deleteEvent = async (eventId: string) => {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+        return null;
+    }
+
+    if (event.status === EventStatus.COMPLETED) {
+        throw new Error("Completed events cannot be deleted");
+    }
+
+    await Event.findByIdAndDelete(eventId);
 
     return event;
-} 
+};
 
 
