@@ -19,10 +19,14 @@ export const getEventById = async(eventId: string)=>{
     return event;
 }
 
-export const updateEvent = async(
-    eventId : string,
+export const updateEvent = async (
+    eventId: string,
     eventData: Partial<IEvent>
-)=>{
+) => {
+
+    console.log("ID received by service:", eventId);
+    console.log("Data received by service:", eventData);
+
     const event = await Event.findByIdAndUpdate(
         eventId,
         eventData,
@@ -30,7 +34,9 @@ export const updateEvent = async(
             new: true,
             runValidators: true,
         }
-    )
+    );
+
+    console.log("Updated event:", event);
 
     return event;
 };

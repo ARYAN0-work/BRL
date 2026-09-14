@@ -22,7 +22,7 @@ export const getAllEventsController = async(
 
     res.status(200).json({
         success:true,
-        data: event
+        data: events
     })
 }
 
@@ -44,6 +44,13 @@ export const updateEventController = async(
     res:Response
 ) =>{
     const event = await updateEvent(req.params.id as string, req.body);
+
+    if (!event) {
+    return res.status(404).json({
+      success: false,
+      message: "Event not found",
+    });
+  }
 
     res.status(200).json({
         success: true,
