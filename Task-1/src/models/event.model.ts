@@ -2,14 +2,14 @@ import { Schema, model } from "mongoose";
 
 export enum EventStatus {
     UPCOMING = "UPCOMING",
-    ONGOING = "ONGOING", 
+    ONGOING = "ONGOING",
     COMPLETED = "COMPLETED",
     CANCELLED = "CANCELLED",
 }
 
 export interface IEvent {
     name: string;
-    decription: string;
+    description: string;
     startTime: Date;
     endTime: Date;
     venue: string;
@@ -19,16 +19,20 @@ export interface IEvent {
 
 const eventSchema = new Schema(
     {
-        name:{
+        name: {
             type: String,
             required: true,
-            trim: true
+            trim: true,
+            minlength: 3,
+            maxlength: 100,
         },
 
-        description:{
+        description: {
             type: String,
-            required:true,
-            trim: true
+            required: true,
+            trim: true,
+            minlength: 5,
+            maxlength: 500,
         },
 
         startTime: {
@@ -36,7 +40,7 @@ const eventSchema = new Schema(
             required: true,
         },
 
-        endTime:{
+        endTime: {
             type: Date,
             required: true,
         },
@@ -47,20 +51,21 @@ const eventSchema = new Schema(
             trim: true,
         },
 
-        capacity:{
+        capacity: {
             type: Number,
             required: true,
+            min: 1,
         },
 
-        status:{
+        status: {
             type: String,
             enum: Object.values(EventStatus),
-            default: EventStatus.UPCOMING
+            default: EventStatus.UPCOMING,
         },
     },
     {
-        timestamps:true,
+        timestamps: true,
     }
-)
+);
 
-export const Event = model<IEvent>("Event",eventSchema);
+export const Event = model<IEvent>("Event", eventSchema);
