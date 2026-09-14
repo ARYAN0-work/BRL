@@ -46,15 +46,22 @@ export const getAllEventsController = async (
 };
 
 export const getEventByIdController = async (
-  req: Request,
-  res: Response
+    req: Request,
+    res: Response
 ) => {
-  const event = await getEventById(req.params.id as string);
+    const event = await getEventById(req.params.id as string);
 
-  res.status(200).json({
-    success: true,
-    data: event,
-  });
+    if (!event) {
+        return res.status(404).json({
+            success: false,
+            message: "Event not found",
+        });
+    }
+
+    res.status(200).json({
+        success: true,
+        data: event,
+    });
 };
 
 
@@ -77,14 +84,21 @@ export const updateEventController = async(
     })
 }
 
-export const deleteEventContoller = async(
+export const deleteEventController = async (
     req: Request,
     res: Response
-)=> {
+) => {
     const event = await deleteEvent(req.params.id as string);
+
+    if (!event) {
+        return res.status(404).json({
+            success: false,
+            message: "Event not found",
+        });
+    }
 
     res.status(200).json({
         success: true,
         data: event,
-    })
-}
+    });
+};

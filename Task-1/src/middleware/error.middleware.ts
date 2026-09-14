@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 
-export const errorMiddleware = (
+export const errorHandler = (
     err: Error,
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
+    console.error(err);
+
     if (err instanceof mongoose.Error.ValidationError) {
         return res.status(400).json({
             success: false,
@@ -15,7 +17,24 @@ export const errorMiddleware = (
         });
     }
 
-    console.error(err);
+    if (err.message.includes("already exists")) {
+        return res.status(409).json({
+            success: false,
+            message: err.message,
+        });
+    }
+
+    if (
+        err.message.includes("must be in the future") ||
+        err.message.includes("must be after start time") ||
+        err.message.includes("cannot be updated") ||
+        err.message.includes("cannot be deleted")
+    ) {
+        return res.status(400).json({
+            success: false,
+            message: err.message,
+        });
+    }
 
     return res.status(500).json({
         success: false,
