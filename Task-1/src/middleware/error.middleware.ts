@@ -17,6 +17,13 @@ export const errorHandler = (
         });
     }
 
+    if (err instanceof mongoose.Error.CastError) {
+    return res.status(400).json({
+        success: false,
+        message: "Invalid event ID",
+    });
+}
+
     if (err.message.includes("already exists")) {
         return res.status(409).json({
             success: false,
