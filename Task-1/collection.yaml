@@ -1,0 +1,503 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: BRL-TASK-1
+meta:
+  id: wrk_704f8c2a44f448eca6ddbc4e322ea8a9
+  created: 1789487059527
+  modified: 1789487059527
+  description: ""
+collection:
+  - name: CRUD
+    meta:
+      id: fld_6e06ec134ed14339a81de075d058ca49
+      created: 1789487078061
+      modified: 1789487078061
+      sortKey: -1789487078061
+      description: ""
+    children:
+      - url: "{{URL}}/events"
+        name: Create
+        meta:
+          id: req_b9e9acca61f14b58aef075b7116ce697
+          created: 1789487215137
+          modified: 1789489579633
+          isPrivate: false
+          description: ""
+          sortKey: -1789487215137
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Tech Fest 2026",
+              "description": "Annual technology event",
+              "startTime": "2026-09-20T10:00:00.000Z",
+              "endTime": "2026-09-20T16:00:00.000Z",
+              "venue": "Main Auditorium",
+              "capacity": 500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Get All Events
+        meta:
+          id: req_23c9ee43f28742e0be3fe03d1a8014a5
+          created: 1789487315509
+          modified: 1789487338081
+          isPrivate: false
+          description: ""
+          sortKey: -1789487315509
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+        name: Get Event By Id
+        meta:
+          id: req_eccc71de392e41d6babbfbacd5400079
+          created: 1789487362593
+          modified: 1789487398186
+          isPrivate: false
+          description: ""
+          sortKey: -1789487362593
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+        name: Update Event
+        meta:
+          id: req_9464162946104686af8b59589de5f3c5
+          created: 1789487407149
+          modified: 1789487493611
+          isPrivate: false
+          description: ""
+          sortKey: -1789487407149
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Tech Fest 2026 - Updated",
+              "capacity": 600
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+        name: Delete-Event
+        meta:
+          id: req_acf866e6e8b147dfa4ae34f0d36bc87d
+          created: 1789487454831
+          modified: 1789487502818
+          isPrivate: false
+          description: ""
+          sortKey: -1789487454831
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Validation-Test
+    meta:
+      id: fld_26f7f5e4531a46dd90cba1d0ac484ae0
+      created: 1789487523334
+      modified: 1789487523334
+      sortKey: -1789487523334
+      description: ""
+    children:
+      - url: "{{URL}}/events"
+        name: Invalid-Capacity
+        meta:
+          id: req_530f31fcf3484536badc3200e6efe2bd
+          created: 1789487548406
+          modified: 1789487582315
+          isPrivate: false
+          description: ""
+          sortKey: -1789487548406
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Invalid Capacity Event",
+              "description": "Testing capacity validation",
+              "startTime": "2026-09-20T10:00:00.000Z",
+              "endTime": "2026-09-20T12:00:00.000Z",
+              "venue": "Main Auditorium",
+              "capacity": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Past-Start-Time
+        meta:
+          id: req_9014ad4f68a749ff84a96fae5df31d37
+          created: 1789487676945
+          modified: 1789487707761
+          isPrivate: false
+          description: ""
+          sortKey: -1789487676945
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Past Event Test",
+              "description": "Testing past start time",
+              "startTime": "2026-09-10T10:00:00.000Z",
+              "endTime": "2026-09-10T12:00:00.000Z",
+              "venue": "Main Auditorium",
+              "capacity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Invalid-End-Time
+        meta:
+          id: req_38dad612c82744609852f5e710b233ba
+          created: 1789487743826
+          modified: 1789487830487
+          isPrivate: false
+          description: ""
+          sortKey: -1789487743826
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Invalid End Time Event",
+              "description": "Testing end time validation",
+              "startTime": "2026-09-20T16:00:00.000Z",
+              "endTime": "2026-09-20T15:00:00.000Z",
+              "venue": "Main Auditorium",
+              "capacity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Buisness-logic
+    meta:
+      id: fld_1bdb1a63668e4988bba789bd19b9dca8
+      created: 1789488020995
+      modified: 1789488020995
+      sortKey: -1789488020995
+      description: ""
+    children:
+      - url: "{{URL}}/events"
+        name: Duplicate
+        meta:
+          id: req_3c03aab169f649a48452e6ca077ea33b
+          created: 1789487804621
+          modified: 1789488025644
+          isPrivate: false
+          description: ""
+          sortKey: -1789488024199
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Duplicate Test Event",
+              "description": "Testing duplicate event prevention",
+              "startTime": "2026-09-25T10:00:00.000Z",
+              "endTime": "2026-09-25T12:00:00.000Z",
+              "venue": "Seminar Hall",
+              "capacity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Duplicate
+        meta:
+          id: req_c17212fa51c649899be40522dbcc5e28
+          created: 1789487925817
+          modified: 1789488024172
+          isPrivate: false
+          description: ""
+          sortKey: -1789488024099
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Duplicate Test Event",
+              "description": "Testing duplicate event prevention",
+              "startTime": "2026-09-25T10:00:00.000Z",
+              "endTime": "2026-09-25T12:00:00.000Z",
+              "venue": "Seminar Hall",
+              "capacity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa96ae46940c7edbaaa2975"
+        name: Mark-Event-Completed
+        meta:
+          id: req_eddbdc01538646feaf3b0b099c06b3b1
+          created: 1789488162338
+          modified: 1789488295724
+          isPrivate: false
+          description: ""
+          sortKey: -1789488162338
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "status": "COMPLETED"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa96ae46940c7edbaaa2975"
+        name: Updating-Completed_event
+        meta:
+          id: req_378c59e14f1e4b7eb9d0705b4323f772
+          created: 1789488213212
+          modified: 1789488351975
+          isPrivate: false
+          description: ""
+          sortKey: -1789488213212
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Trying To Update Completed Event"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aa96ae46940c7edbaaa2975"
+        name: Delete-Complete-Event
+        meta:
+          id: req_72dd89c2b79141ad8a6bb9ffe07ec50a
+          created: 1789488331858
+          modified: 1789488364255
+          isPrivate: false
+          description: ""
+          sortKey: -1789488331858
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "success": false,
+              "message": "Completed events cannot be deleted"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Filter-Pagination
+    meta:
+      id: fld_a8c63015a7e742b889083b8f3308cdef
+      created: 1789488070455
+      modified: 1789488070455
+      sortKey: -1789488070455
+      description: ""
+    children:
+      - url: "{{URL}}/events?search=Tech"
+        name: Search-Filter-Pagination
+        meta:
+          id: req_f5fab43d74d9440293266ceffa19087d
+          created: 1789488391806
+          modified: 1789488430540
+          isPrivate: false
+          description: ""
+          sortKey: -1789488391806
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events?venue=Auditorium"
+        name: Filter-By-Venue
+        meta:
+          id: req_b4a1c06ff27e4b929ac6985d1b690dd3
+          created: 1789488443802
+          modified: 1789488474522
+          isPrivate: false
+          description: ""
+          sortKey: -1789488443802
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events?status=UPCOMING"
+        name: Filter-By-Status
+        meta:
+          id: req_58c6a951174348129a0e8954f6002d47
+          created: 1789488503096
+          modified: 1789488530596
+          isPrivate: false
+          description: ""
+          sortKey: -1789488503096
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events?page=1&limit=2"
+        name: Pagination
+        meta:
+          id: req_e590efd012144b0f930043e3f2f1a58d
+          created: 1789488536192
+          modified: 1789488564693
+          isPrivate: false
+          description: ""
+          sortKey: -1789488536192
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events?sortBy=capacity&order=desc"
+        name: Sorting
+        meta:
+          id: req_c9a84e4b6c3945ccabaf926b422042d0
+          created: 1789488567946
+          modified: 1789488592909
+          isPrivate: false
+          description: ""
+          sortKey: -1789488567946
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_01ff42eea65f259577e3ad183bd2865c2d730dfa
+    created: 1789487059547
+    modified: 1789487059547
+environments:
+  name: Base Environment
+  meta:
+    id: env_01ff42eea65f259577e3ad183bd2865c2d730dfa
+    created: 1789487059544
+    modified: 1789487250038
+    isPrivate: false
+  data:
+    http://localhost:5000/api/v1: URL
+    URL: http://localhost:5000/api/v1

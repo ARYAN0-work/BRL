@@ -109,6 +109,35 @@ export const updateEvent = async (
         throw new Error("Started or completed events cannot be updated");
     }
 
+    const startTime = eventData.startTime
+        ? new Date(eventData.startTime)
+        : existingEvent.startTime;
+
+    const endTime = eventData.endTime
+        ? new Date(eventData.endTime)
+        : existingEvent.endTime;
+
+    if (startTime <= new Date()) {
+        throw new Error("Event start time must be in the future");
+    }
+
+    if (endTime <= startTime) {
+        throw new Error("Event end time must be after start time");
+    }
+
+    if (
+        eventData.status &&
+        eventData.status !== EventStatus.CANCELLED
+    ) {
+        throw new Error(
+            "Event status is managed automatically. Only CANCELLED can be set manually"
+        );
+    }
+
+    if (eventData.status !== EventStatus.CANCELLED) {
+        eventData.status = getEventStatus(startTime, endTime);
+    }
+
     const event = await Event.findByIdAndUpdate(
         eventId,
         eventData,
