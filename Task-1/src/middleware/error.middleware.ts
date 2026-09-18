@@ -46,6 +46,13 @@ export const errorHandler = (
         });
     }
 
+    if (err instanceof mongoose.Error.CastError) {
+    return res.status(400).json({
+        success: false,
+        message: "Invalid ID",
+    });
+}
+
     return res.status(500).json({
         success: false,
         message: "Internal server error",
