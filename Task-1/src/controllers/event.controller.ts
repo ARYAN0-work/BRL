@@ -1,6 +1,7 @@
 import {Request,Response} from "express";
 import { EventStatus } from "../models/event.model.js";
 import { createEvent, getAllEvents, getEventById,updateEvent, deleteEvent } from "../services/event.service.js";
+import { registerForEvent } from "../services/registration.service.js";
 
 export const createEventController = async(
     req: Request,
@@ -100,5 +101,22 @@ export const deleteEventController = async (
     res.status(200).json({
         success: true,
         data: event,
+    });
+};
+
+export const registerForEventController = async (
+    req: Request,
+    res: Response
+) => {
+    const user = (req as any).user;
+
+    const registration = await registerForEvent(
+        user.userId,
+        req.params.id as string
+    );
+
+    res.status(201).json({
+        success: true,
+        data: registration,
     });
 };

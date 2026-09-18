@@ -24,7 +24,10 @@ export const errorHandler = (
     });
 }
 
-    if (err.message.includes("already exists")) {
+        if (
+        err.message.includes("already exists") ||
+        err.message.includes("already registered")
+    ) {
         return res.status(409).json({
             success: false,
             message: err.message,
