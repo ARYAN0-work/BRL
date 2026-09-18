@@ -53,3 +53,13 @@ export const getMeController = async (
         data: (req as any).user,
     });
 };
+
+export const logoutController = async (
+    req: Request,
+    res: Response
+) => {
+    res.status(200).json({
+        success: true,
+        message: "Logged out successfully",
+    });
+};
