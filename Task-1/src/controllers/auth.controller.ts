@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { registerUser } from "../services/auth.service.js";
+import { loginUser } from "../services/auth.service.js";
 
 export const registerController = async (
     req: Request,
@@ -26,5 +27,19 @@ export const registerController = async (
     return res.status(201).json({
         success: true,
         data: user,
+    });
+};
+
+export const loginController = async (
+    req: Request,
+    res: Response
+) => {
+    const { email, password } = req.body;
+
+    const result = await loginUser(email, password);
+
+    res.status(200).json({
+        success: true,
+        data: result,
     });
 };
