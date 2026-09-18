@@ -43,3 +43,13 @@ export const loginController = async (
         data: result,
     });
 };
+
+export const getMeController = async (
+    req: Request,
+    res: Response
+) => {
+    res.status(200).json({
+        success: true,
+        data: (req as any).user,
+    });
+};
