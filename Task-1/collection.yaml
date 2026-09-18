@@ -20,7 +20,7 @@ collection:
         meta:
           id: req_b9e9acca61f14b58aef075b7116ce697
           created: 1789487215137
-          modified: 1789489579633
+          modified: 1789562537050
           isPrivate: false
           description: ""
           sortKey: -1789487215137
@@ -29,12 +29,13 @@ collection:
           mimeType: application/json
           text: |-
             {
-              "name": "Tech Fest 2026",
+              "name": "Tech Fest 2227",
               "description": "Annual technology event",
-              "startTime": "2026-09-20T10:00:00.000Z",
-              "endTime": "2026-09-20T16:00:00.000Z",
+              "startTime": "2126-09-20T10:00:00.000Z",
+              "endTime": "2126-09-20T16:00:00.000Z",
               "venue": "Main Auditorium",
-              "capacity": 500
+            	"status":"COMPLETED",
+              "capacity": 53
             }
         headers:
           - name: Content-Type
@@ -65,12 +66,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+      - url: "{{URL}}/events/6aaa8a437353e9d63c70dfb0"
         name: Get Event By Id
         meta:
           id: req_eccc71de392e41d6babbfbacd5400079
           created: 1789487362593
-          modified: 1789487398186
+          modified: 1789561609443
           isPrivate: false
           description: ""
           sortKey: -1789487362593
@@ -83,12 +84,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+      - url: "{{URL}}/events/6aaa8a437353e9d63c70dfb0"
         name: Update Event
         meta:
           id: req_9464162946104686af8b59589de5f3c5
           created: 1789487407149
-          modified: 1789487493611
+          modified: 1789561573755
           isPrivate: false
           description: ""
           sortKey: -1789487407149
@@ -111,16 +112,34 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{URL}}/events/6aa968b96940c7edbaaa2973"
+      - url: "{{URL}}/events/6aaa8a437353e9d63c70dfb0"
         name: Delete-Event
         meta:
           id: req_acf866e6e8b147dfa4ae34f0d36bc87d
           created: 1789487454831
-          modified: 1789487502818
+          modified: 1789561577741
           isPrivate: false
           description: ""
           sortKey: -1789487454831
         method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_f36d93fff1ca4182ab2f3e008131c893
+          created: 1789561594485
+          modified: 1789561598147
+          isPrivate: false
+          description: ""
+          sortKey: -1789561594485
+        method: GET
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -449,12 +468,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{URL}}/events?page=1&limit=2"
+      - url: "{{URL}}/events?page=1&limit=0"
         name: Pagination
         meta:
           id: req_e590efd012144b0f930043e3f2f1a58d
           created: 1789488536192
-          modified: 1789488564693
+          modified: 1789562196680
           isPrivate: false
           description: ""
           sortKey: -1789488536192
@@ -485,6 +504,281 @@ collection:
             send: true
             store: true
           rebuildPath: true
+  - name: TASK-2
+    meta:
+      id: fld_8a0b29fba0734e25a030b0b2eaa56cbb
+      created: 1789736281968
+      modified: 1789736288584
+      sortKey: -1789736281968
+      description: ""
+    children:
+      - url: "{{URL}}/auth/register"
+        name: AUTH
+        meta:
+          id: req_98d0f350db6f466b9d83e9332b0104f7
+          created: 1789736291647
+          modified: 1789736346362
+          isPrivate: false
+          description: ""
+          sortKey: -1789736291647
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Aryan",
+              "email": "aryan@test.com",
+              "password": "password123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/auth/login"
+        name: Login
+        meta:
+          id: req_4d1dee3b55f84362b06f38337153fb92
+          created: 1789736904658
+          modified: 1789737224067
+          isPrivate: false
+          description: ""
+          sortKey: -1789736904658
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "aryan@test.com",
+              "password": "password123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/auth/me"
+        name: me route without token
+        meta:
+          id: req_860717ac7a164550b8efa1e5cda6c152
+          created: 1789737217141
+          modified: 1789739673381
+          isPrivate: false
+          description: ""
+          sortKey: -1789737217141
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/auth/me"
+        name: me route with token
+        meta:
+          id: req_3035e096181c45c58a8d2f21057094fe
+          created: 1789737286794
+          modified: 1789739661686
+          isPrivate: false
+          description: ""
+          sortKey: -1789737286794
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWFkMzU5ZTMxNDg1ODBiNDkzNTllYzgiLCJpYXQiOjE3ODk3MzY5NDcsImV4cCI6MTc4OTgyMzM0N30.0leJxcK7bY3RLkzVTPBTR5Wn7Xj6d51wRi3Z9Bq4St0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Event-api
+        meta:
+          id: req_5b95bf0665654ebb83fd24f09b55fc53
+          created: 1789737898550
+          modified: 1789737963480
+          isPrivate: false
+          description: ""
+          sortKey: -1789737898550
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Regsiter user without token
+        meta:
+          id: req_15ee78f66d5c4718b8af71595578001f
+          created: 1789737958256
+          modified: 1789739837260
+          isPrivate: false
+          description: ""
+          sortKey: -1789737958256
+        method: POST
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events"
+        name: Regiister event with auth
+        meta:
+          id: req_c6bb174d0b7c46aa8daf8cca84506870
+          created: 1789737983345
+          modified: 1789739814417
+          isPrivate: false
+          description: ""
+          sortKey: -1789737983345
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Backend Workshop",
+              "description": "Node.js backend development workshop",
+              "startTime": "2026-09-25T10:00:00.000Z",
+              "endTime": "2026-09-25T12:00:00.000Z",
+              "venue": "Main Auditorium",
+              "capacity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWFkMzU5ZTMxNDg1ODBiNDkzNTllYzgiLCJpYXQiOjE3ODk3MzY5NDcsImV4cCI6MTc4OTgyMzM0N30.0leJxcK7bY3RLkzVTPBTR5Wn7Xj6d51wRi3Z9Bq4St0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/auth/logout"
+        name: logout
+        meta:
+          id: req_ccf4eedbf0fb4de59b01f556cfee0480
+          created: 1789738270587
+          modified: 1789738597362
+          isPrivate: false
+          description: ""
+          sortKey: -1789738270587
+        method: POST
+        headers:
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWFkMzU5ZTMxNDg1ODBiNDkzNTllYzgiLCJpYXQiOjE3ODk3MzY5NDcsImV4cCI6MTc4OTgyMzM0N30.0leJxcK7bY3RLkzVTPBTR5Wn7Xj6d51wRi3Z9Bq4St0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aad3c5ee39662b92aa9c9fa/register"
+        name: Register User and duplicate
+        meta:
+          id: req_27c9d1a459f840e89a2760ac691915c9
+          created: 1789738555051
+          modified: 1789739694846
+          isPrivate: false
+          description: ""
+          sortKey: -1789738555051
+        method: POST
+        headers:
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWFkMzU5ZTMxNDg1ODBiNDkzNTllYzgiLCJpYXQiOjE3ODk3MzY5NDcsImV4cCI6MTc4OTgyMzM0N30.0leJxcK7bY3RLkzVTPBTR5Wn7Xj6d51wRi3Z9Bq4St0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/6aad3c5ee39662b92aa9c9fa/register"
+        name: Regisetr user without token
+        meta:
+          id: req_d41b81d6632b4b2580d0160222ffe870
+          created: 1789738626588
+          modified: 1789739706699
+          isPrivate: false
+          description: ""
+          sortKey: -1789738626588
+        method: POST
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{URL}}/events/abc123"
+        name: Invalid-id
+        meta:
+          id: req_dd834abe79c84e29b5129296fcae5fb0
+          created: 1789738897679
+          modified: 1789738991016
+          isPrivate: false
+          description: ""
+          sortKey: -1789738897679
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
@@ -496,8 +790,9 @@ environments:
   meta:
     id: env_01ff42eea65f259577e3ad183bd2865c2d730dfa
     created: 1789487059544
-    modified: 1789487250038
+    modified: 1789555553649
     isPrivate: false
   data:
     http://localhost:5000/api/v1: URL
     URL: http://localhost:5000/api/v1
+    "": ""
